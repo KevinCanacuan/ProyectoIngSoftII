@@ -19,7 +19,7 @@ namespace prjLegados.Controllers
         [HttpPost]
         public JsonResult comprobarLogin(string strUsername, string strPassword) {
           
-            string strMensaje = "Gracias";
+            string strMensaje = "Ingreso con éxito";
             SqlCommand sqlComando = null;
             SqlConnection sqlConnection = null;
             try
@@ -36,6 +36,41 @@ namespace prjLegados.Controllers
             }
             catch (Exception e)
             {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return Json(strMensaje);
+        }
+
+        [HttpPost]
+        public JsonResult ingresarUsuario(string strUsername, string strPassword)
+        {
+
+            string strMensaje = "Registro con éxito";
+            SqlCommand sqlComando = null;
+            SqlConnection sqlConnection = null;
+            try
+            {
+                using (sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["Software"].ConnectionString))
+                {
+                    sqlComando = new SqlCommand("insertarUsuarios", sqlConnection);
+                    
+                    sqlConnection.Open();
+                    sqlComando.CommandType = CommandType.StoredProcedure;
+                    sqlComando.Parameters.AddWithValue("@username", strUsername);
+                    sqlComando.Parameters.AddWithValue("@password", strPassword);
+                    //SqlDataReader dataReader = sqlComando.ExecuteReader();
+                    sqlComando.ExecuteNonQuery();
+    
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Mensaje de error");
                 Console.WriteLine(e.Message);
             }
             finally
