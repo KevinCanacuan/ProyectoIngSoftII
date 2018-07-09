@@ -80,5 +80,42 @@ namespace prjLegados.Controllers
 
             return Json(strMensaje);
         }
+
+        [HttpPost]
+        public JsonResult consultarUsuario(string strUsername, string strPassword)
+        {
+
+            string strMensaje = "Log in exitoso";
+            SqlCommand sqlComando = null;
+            SqlConnection sqlConnection = null;
+            try
+            {
+                bool status = false;
+                using (sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["Software"].ConnectionString))
+                {
+                    sqlComando = new SqlCommand("consultarUsuarios", sqlConnection);
+
+                    sqlConnection.Open();
+                    sqlComando.CommandType = CommandType.StoredProcedure;
+                    sqlComando.Parameters.AddWithValue("@username", strUsername);
+                    sqlComando.Parameters.AddWithValue("@password", strPassword);
+                    //SqlDataReader dataReader = sqlComando.ExecuteReader();
+                    //sqlComando.ExecuteNonQuery();
+                    status = Convert.ToBoolean(sqlComando.ExecuteScalar());
+
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Mensaje de error");
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                sqlConnection.Close();
+            }
+
+            return Json(strMensaje);
+        }
     }
 }

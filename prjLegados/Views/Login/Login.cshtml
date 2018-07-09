@@ -25,7 +25,8 @@
                     </select>
                     <input type="text" id="txtUsername" placeholder="Username" />
                     <input type="password" id="txtPassword" placeholder="Password" />
-                    <input value="Sign In" id="SignIn" class="btn btn-success btn-sm" />
+                    <input value="Ingresar" id="SignIn" class="btn btn-success btn-sm" />
+                    <span id="message"></span>
                 </form>
             </div>
         </div>
@@ -86,7 +87,27 @@
                         window.location.href = "/Container/Container";
                     }
                 });
-            } else {
+            } else if (rol == "Usuario") {
+                $.ajax({
+                    type: "POST",
+                    url: "/Login/consultarUsuario",
+                    data: { strUsername: strUsername, strPassword: strPassword },
+                    success: function (response) {
+                        var message = $("#message");
+                        
+                        if (response.d) {
+                            alert("Usuario no registrado");
+                            window.location.href = "/Container/Container";
+                        }
+                        else {
+                            alert("Usuario registrado")
+                            window.location.href = "/Login/Login";
+                        }
+                        
+                    }
+                });
+            }
+            else {
                 alert("No tiene permisos.");
             }
 
