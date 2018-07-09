@@ -9,6 +9,7 @@
     <h2>Registro de Inventario</h2>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Agregar Nuevo Inventario</button><br /><br />
+    <button id="btnCon" type="button" class="btn btn-primary">Contenedor</button><br /><br />
 
     <table class="table table-bordered table-hover">
 
@@ -137,6 +138,11 @@
 </div>
 @section Scripts{
     <script>
+
+        $("#btnCon").click(function () {
+            window.location.href = "/Container/Container";
+        });
+
         $(document).ready(function () {
 
             loadData();

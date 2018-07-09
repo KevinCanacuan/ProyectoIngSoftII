@@ -26,26 +26,27 @@
                     <input type="text" id="txtUsername" placeholder="Username" />
                     <input type="password" id="txtPassword" placeholder="Password" />
                     <input value="Ingresar" id="SignIn" class="btn btn-success btn-sm" />
-                    
+
                 </form>
+                <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
             </div>
         </div>
     </div>
-    <!-- Button to open the modal -->
-    <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
+    <!-- Button to open the modal 
+    <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>-->
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">times;</span>
         <form class="modal-content" action="/action_page.php">
             <div class="container">
                 <h1>Registro</h1>
-               
+
                 <hr>
-                <label for="email"><b>Email</b></label>
-                <input type="text" id="usuario" placeholder="Enter Email" name="email" required>
+                <label for="email"><b>Usuario</b></label>
+                <input type="text" id="usuario" placeholder="Enter " name="email" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" id="pass" placeholder="Enter Password" name="psw" required>
+                <input type="password" id="pass" placeholder="Enter " name="psw" required>
 
                 <label for="psw-repeat"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
@@ -54,7 +55,9 @@
                     <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
                     <!----<button type="submit" class="signup">Registrar</button>-->
                     <input value="Registrar" id="SignUp" class="btn btn-success btn-sm" />
+
                 </div>
+                <!----<button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>-->
             </div>
         </form>
     </div>

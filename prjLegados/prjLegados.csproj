@@ -377,6 +377,7 @@
     <Content Include="Views\Container\_Browser.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Inventory\Inventory.cshtml" />
+    <Content Include="Views\Admin\Admin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Upload\" />
