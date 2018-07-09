@@ -13,6 +13,7 @@
         <a href="#" class="btn btn-group" id="btnNewContainer" onclick="fntAddNewContainer()">Nueva Agrupación</a>
         <a href="#" class="btn btn-group" id="btnDeleteContainer">Borrar Agrupación</a>
         <a href="#" class="btn btn-group" id="btnUpload">Subir Archivos</a>
+        <a href="#" class="btn btn-group" id="btninve">Inventario</a>
     </div> <br />
     <div id="Filtros">
         <table>
@@ -554,7 +555,11 @@
                             }
 
                         });
-                    });
+        });
+
+        $("#btninve").click(function () {
+           window.location.href = "/Inventory/Inventory";
+        });
 
                     $("#cbxFilterTextMonth").on("change", function () {
                         if ($("#cbxFilterTextMonth").val() == "between") {

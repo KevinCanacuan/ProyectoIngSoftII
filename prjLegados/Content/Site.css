@@ -41,6 +41,14 @@ textarea {
     margin: 5px;
 }
 
+#btninve {
+    text-align: center;
+    background-color: #F18924;
+    color: black;
+    float: left;
+    margin: 5px;
+}
+
 #btnDeleteContainer {
     text-align: center;
     background-color: #F18924;
