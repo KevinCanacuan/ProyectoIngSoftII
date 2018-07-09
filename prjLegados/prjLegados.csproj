@@ -197,12 +197,14 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ContainerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InventoryController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Archivo.cs" />
     <Compile Include="Models\Enlace.cs" />
+    <Compile Include="Models\Inventory.cs" />
     <Compile Include="Models\Mensaje.cs" />
     <Compile Include="Models\ClsContainer.cs" />
     <Compile Include="Models\Metadata.cs" />
@@ -374,6 +376,7 @@
     <Content Include="Views\Container\_Upload.cshtml" />
     <Content Include="Views\Container\_Browser.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
+    <Content Include="Views\Inventory\Inventory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Upload\" />
