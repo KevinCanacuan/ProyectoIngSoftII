@@ -94,14 +94,14 @@
                     data: { strUsername: strUsername, strPassword: strPassword },
                     success: function (response) {
                         var message = $("#message");
-                        
+                        //alert(response);
                         if (response.d) {
-                            alert("Usuario no registrado");
                             window.location.href = "/Container/Container";
                         }
                         else {
-                            alert("Usuario registrado")
+                            
                             window.location.href = "/Login/Login";
+                            alert("Usuario no registrado");
                         }
                         
                     }
