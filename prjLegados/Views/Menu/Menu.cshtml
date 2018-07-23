@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewBag.Title = "Menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <header>
+        <h2>Menú Principal</h2>
+
+    </header>
+
+    <div class="xs-menu-cont">
+        <a id="menutoggle"><i class="fa fa-align-justify"></i> </a>
+        <nav class="xs-menu displaynone">
+            <ul>
+                <li class="active">
+                    <a href="#">Home</a>
+                </li>
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Team</a>
+                </li>
+                <li>
+                    <a href="#">Portfolio</a>
+                </li>
+                <li>
+                    <a href="#">Blog</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+
+            </ul>
+        </nav>
+    </div>
+    <nav class="menu">
+        <ul>
+            <li class="active">
+                <a href="#">Principal</a>
+            </li>
+            <li>
+                <a href="~/Views/Upload/Upload.cshtml">Subir archivos CSV</a>
+            </li>
+            <li>
+                <a href="~/Views/Inventory/Inventory.cshtml">Inventario</a>
+            </li>
+            <li>
+                <a href="~/Views/Container/Container.cshtml">Subir PDFs</a>
+            </li>
+            <li>
+                <a href="#">Administración de Usuarios</a>
+
+            </li>
+        </ul>
+    </nav>
+</div>
+<link href="~/Content/Menu.css" rel="stylesheet" />

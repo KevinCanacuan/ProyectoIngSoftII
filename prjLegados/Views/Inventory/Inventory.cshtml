@@ -1,0 +1,500 @@
+﻿
+@{
+    ViewBag.Title = "Inventory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <h2>Registro de Inventario</h2>
+
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Agregar Nuevo Inventario</button><br /><br />
+
+    <table class="table table-bordered table-hover">
+
+        <thead>
+
+            <tr>
+
+                <th>
+
+                    ID
+
+                </th>
+
+                <th>
+
+                    Nombre
+
+                </th>
+
+                <th>
+
+                    Precio Unitario
+
+                </th>
+
+                <th>
+
+                    Cantidad    
+
+                </th>
+
+                <th>
+
+                    Fecha
+
+                </th>
+
+            </tr>
+
+        </thead>
+
+        <tbody class="tbody"></tbody>
+
+    </table>
+
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                @*<button type="button" class="close" data-dissmiss="modal"><span aria-hidden="true">×</span></button>*@
+
+                <button type="button" class="close" data-dismiss="modal">×</button>
+
+                <h4 class="modal-title" id="myModalLabel">Agregar Inventario</h4>
+
+            </div>
+
+            <div class="modal-body">
+
+                <form>
+
+                    <div class="form-group">
+
+                        <label for="EmployeeId">ID</label>
+
+                        <input type="text" class="form-control" id="EmployeeID" placeholder="Id" disabled="disabled"/>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="Name">Nombre</label>
+
+                        <input type="text" class="form-control" id="Name" placeholder="Nombre" />
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="Age">Precio Unitario</label>
+
+                        <input type="text" class="form-control" id="Age" placeholder="Precio Unitario" />
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="State">Cantidad</label>
+
+                        <input type="text" class="form-control" id="State" placeholder="Cantidad" />
+
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="Country">Fecha</label>
+
+                        <input type="text" class="form-control" id="Country" placeholder="Fecha" />
+
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary" id="btnAdd" onclick="return Add();">Agregar</button>
+
+                <button type="button" class="btn btn-primary" id="btnUpdate" style="display:none;" onclick="Update();">Actualizar</button>
+
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+
+            loadData();
+
+        });
+
+        //Load Data function
+
+        function loadData() {
+
+            $.ajax({
+
+                url: "/Inventory/ListInventory",
+
+                type: "GET",
+
+                contentType: "application/json;charset=utf-8",
+
+                dataType: "json",
+
+                success: function (result) {
+
+                    var html = '';
+                    $.each(result, function (key, item) {
+
+                        html += '<tr>';
+
+                        html += '<td>' + item.idInventario + '</td>';
+
+                        html += '<td>' + item.nombreObjeto + '</td>';
+
+                        html += '<td>' + item.precioUnit + '</td>';
+
+                        html += '<td>' + item.cantidadDisponible + '</td>';
+
+                        html += '<td>' + item.fechaIngreso + '</td>';
+
+                        html += '<td><a href="#" onclick="return getbyID(' + item.idInventario + ')">Editar</a> | <a href="#" onclick="Delele(' + item.idInventario + ')">Borrar</a></td>';
+                       
+                        html += '</tr>';
+
+                    });
+
+                    $('.tbody').html(html);
+
+                },
+
+                error: function (errormessage) {
+
+                    alert(errormessage.responseText);
+
+                }
+
+            });
+
+        }
+
+        function Add() {
+
+            var res = validate();
+
+            if (res == false) {
+
+                return false;
+
+            }
+
+            var inventario = {
+
+                nombreObjeto: $('#Name').val(),
+
+                precioUnit: $('#Age').val(),
+
+                cantidadDisponible: $('#State').val(),
+
+                fechaIngreso: $('#Country').val(),
+
+            };
+
+            $.ajax({
+
+                url: "/Inventory/Add",
+
+                data: JSON.stringify(inventario),
+
+                type: "POST",
+
+                contentType: "application/json;charset=utf-8",
+
+                dataType: "json",
+
+                success: function (result) {
+
+                    alert(result);
+                    loadData();
+                    $('#myModal').modal('hide');
+
+                },
+
+                error: function (errormessage) {
+
+                    alert(errormessage.responseText);
+
+                }
+
+            });
+
+        }
+
+        //Function for getting the Data Based upon Employee ID
+
+        function getbyID(EmpID) {
+
+            $('#Name').css('border-color', 'lightgrey');
+
+            $('#Age').css('border-color', 'lightgrey');
+
+            $('#State').css('border-color', 'lightgrey');
+
+            $('#Country').css('border-color', 'lightgrey');
+
+            $.ajax({
+
+                url: "/Inventory/GetbyID/" + EmpID,
+
+                typr: "GET",
+
+                contentType: "application/json;charset=UTF-8",
+
+                dataType: "json",
+
+                success: function (result) {
+
+                    $('#EmployeeID').val(result.idInventario);
+
+                    $('#Name').val(result.nombreObjeto);
+
+                    $('#Age').val(result.precioUnit);
+
+                    $('#State').val(result.cantidadDisponible);
+
+                    $('#Country').val(result.fechaIngreso);
+
+                    $('#myModal').modal('show');
+
+                    $('#btnUpdate').show();
+
+                    $('#btnAdd').hide();
+
+                },
+
+                error: function (errormessage) {
+
+                    alert(errormessage.responseText);
+
+                }
+
+            });
+
+            return false;
+
+        }
+
+        //function for updating employee's record
+
+        function Update() {
+
+            var res = validate();
+
+            if (res == false) {
+
+                return false;
+
+            }
+
+            var inventario = {
+                idInventario: $('#EmployeeID').val(),
+
+                nombreObjeto: $('#Name').val(),
+
+                precioUnit: $('#Age').val(),
+
+                cantidadDisponible: $('#State').val(),
+
+                fechaIngreso: $('#Country').val(),
+
+            };
+
+            $.ajax({
+
+                url: "/Inventory/Update",
+
+                data: JSON.stringify(inventario),
+
+                type: "POST",
+
+                contentType: "application/json;charset=utf-8",
+
+                dataType: "json",
+
+                success: function (result) {
+                    alert(result);
+                    loadData();
+
+                    $('#myModal').modal('hide');
+
+                    $('#EmployeeID').val("");
+
+                    $('#Name').val("");
+
+                    $('#Age').val("");
+
+                    $('#State').val("");
+
+                    $('#Country').val("");
+
+                },
+
+                error: function (errormessage) {
+
+                    alert(errormessage.responseText);
+
+                }
+
+            });
+
+        }
+
+        //function for deleting employee's record
+
+        function Delele(ID) {
+
+            var ans = confirm("Está seguro que quiere eliminar este objeto?");
+
+            if (ans) {
+
+                $.ajax({
+
+                    url: "/Inventory/Delete/" + ID,
+
+                    type: "POST",
+
+                    contentType: "application/json;charset=UTF-8",
+
+                    dataType: "json",
+
+                    success: function (result) {
+
+                        loadData();
+
+                    },
+
+                    error: function (errormessage) {
+
+                        alert(errormessage.responseText);
+
+                    }
+
+                });
+
+            }
+
+        }
+
+        //Function for clearing the textboxes
+
+        function clearTextBox() {
+
+            $('#EmployeeID').val("");
+
+            $('#Name').val("");
+
+            $('#Age').val("");
+
+            $('#State').val("");
+
+            $('#Country').val("");
+
+            $('#btnUpdate').hide();
+
+            $('#btnAdd').show();
+
+            $('#Name').css('border-color', 'lightgrey');
+
+            $('#Age').css('border-color', 'lightgrey');
+
+            $('#State').css('border-color', 'lightgrey');
+
+            $('#Country').css('border-color', 'lightgrey');
+
+        }
+
+        //Valdidation using jquery
+
+        function validate() {
+
+            var isValid = true;
+
+            if ($('#Name').val().trim() == "") {
+
+                $('#Name').css('border-color', 'Red');
+
+                isValid = false;
+
+            }
+
+            else {
+
+                $('#Name').css('border-color', 'lightgrey');
+
+            }
+
+            if ($('#Age').val().trim() == "") {
+
+                $('#Age').css('border-color', 'Red');
+
+                isValid = false;
+
+            }
+
+            else {
+
+                $('#Age').css('border-color', 'lightgrey');
+
+            }
+
+            if ($('#State').val().trim() == "") {
+
+                $('#State').css('border-color', 'Red');
+
+                isValid = false;
+
+            }
+
+            else {
+
+                $('#State').css('border-color', 'lightgrey');
+
+            }
+
+            if ($('#Country').val().trim() == "") {
+
+                $('#Country').css('border-color', 'Red');
+
+                isValid = false;
+
+            }
+
+            else {
+
+                $('#Country').css('border-color', 'lightgrey');
+
+            }
+
+            return isValid;
+
+        }
+
+    </script>
+
+}
