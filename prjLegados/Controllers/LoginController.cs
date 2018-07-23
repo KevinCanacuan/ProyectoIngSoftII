@@ -63,7 +63,6 @@ namespace prjLegados.Controllers
                     sqlComando.CommandType = CommandType.StoredProcedure;
                     sqlComando.Parameters.AddWithValue("@username", strUsername);
                     sqlComando.Parameters.AddWithValue("@password", strPassword);
-                    //SqlDataReader dataReader = sqlComando.ExecuteReader();
                     sqlComando.ExecuteNonQuery();
     
                 }
@@ -99,10 +98,9 @@ namespace prjLegados.Controllers
                     sqlComando.CommandType = CommandType.StoredProcedure;
                     sqlComando.Parameters.AddWithValue("@username", strUsername);
                     sqlComando.Parameters.AddWithValue("@password", strPassword);
-                    //SqlDataReader dataReader = sqlComando.ExecuteReader();
-                    //sqlComando.ExecuteNonQuery();
+                    sqlComando.ExecuteNonQuery();
                     status = Convert.ToBoolean(sqlComando.ExecuteScalar());
-
+                    strMensaje = status.ToString();
                 }
             }
             catch (Exception e)

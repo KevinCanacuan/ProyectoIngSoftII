@@ -4,6 +4,16 @@
     padding: 0;
     margin: 0;
 }
+#Cancelar {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    opacity: 0.9;
+}
 
     .wrap {
         width: 100%;
@@ -27,7 +37,7 @@
     }
 
     form {
-        width: 250px;
+        width: 500px;
         margin: 0 auto;
     }
 
@@ -162,3 +172,9 @@
         padding: 10px;
         left: 45%;
     }
+
+
+.cancelbtn {
+    padding: 14px 20px;
+    background-color: #f44336;
+}

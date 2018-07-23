@@ -28,12 +28,10 @@
                     <input value="Ingresar" id="SignIn" class="btn btn-success btn-sm" />
 
                 </form>
-                <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>
+                <button onclick="document.getElementById('id01').style.display='block'"  class="btn btn-success btn-sm">Registrarse</button>
             </div>
         </div>
     </div>
-    <!-- Button to open the modal 
-    <button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>-->
 
     <div id="id01" class="modal">
         <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">times;</span>
@@ -48,16 +46,11 @@
                 <label for="psw"><b>Password</b></label>
                 <input type="password" id="pass" placeholder="Enter " name="psw" required>
 
-                <label for="psw-repeat"><b>Repeat Password</b></label>
-                <input type="password" placeholder="Repeat Password" name="psw-repeat" required>
-
                 <div class="clearfix">
-                    <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
-                    <!----<button type="submit" class="signup">Registrar</button>-->
+                    <button id="Cancelar" type="button" onclick="document.getElementById('id01').style.display='none'" class="btn btn-success btn-sm">Cancelar</button>
                     <input value="Registrar" id="SignUp" class="btn btn-success btn-sm" />
 
                 </div>
-                <!----<button onclick="document.getElementById('id01').style.display='block'">Registrarse</button>-->
             </div>
         </form>
     </div>
@@ -97,11 +90,11 @@
                     data: { strUsername: strUsername, strPassword: strPassword },
                     success: function (response) {
                         var message = $("#message");
-                        //alert(response);
-                        if (response.d) {
+                        if (response=="True") {
                             window.location.href = "/Container/Container";
+                            alert("Ingreso exitoso");
                         }
-                        else {
+                        else{
                             
                             window.location.href = "/Login/Login";
                             alert("Usuario no registrado");
