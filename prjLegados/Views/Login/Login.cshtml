@@ -28,7 +28,7 @@
                     <input value="Ingresar" id="SignIn" class="btn btn-success btn-sm" />
 
                 </form>
-                <button onclick="document.getElementById('id01').style.display='block'"  class="btn btn-success btn-sm">Registrarse</button>
+                <button onclick="document.getElementById('id01').style.display='block'" class="btn btn-success btn-sm">Registrarse</button>
             </div>
         </div>
     </div>
@@ -80,7 +80,7 @@
                     data: { strUsername: strUsername, strPassword: strPassword },
                     success: function (response) {
                         alert(response);
-                        window.location.href = "/Container/Container";
+                        window.location.href = "/Admin/Admin";
                     }
                 });
             } else if (rol == "Usuario") {
@@ -90,16 +90,16 @@
                     data: { strUsername: strUsername, strPassword: strPassword },
                     success: function (response) {
                         var message = $("#message");
-                        if (response=="True") {
+                        if (response == "True") {
                             window.location.href = "/Container/Container";
                             alert("Ingreso exitoso");
                         }
-                        else{
-                            
+                        else {
+
                             window.location.href = "/Login/Login";
                             alert("Usuario no registrado");
                         }
-                        
+
                     }
                 });
             }
@@ -110,23 +110,23 @@
         });
 
         $("#SignUp").click(function () {
-            
+
             var strUsername = $("#usuario").val();
             var strPassword = $("#pass").val();
-           
-                $.ajax({
-                    type: "POST",
-                    url: "/Login/ingresarUsuario",
-                    data: { strUsername: strUsername, strPassword: strPassword },
-                    success: function (response) {
-                        alert(response);
-                        window.location.href = "/Login/Login";
-                    }
-                });
-           
+
+            $.ajax({
+                type: "POST",
+                url: "/Login/ingresarUsuario",
+                data: { strUsername: strUsername, strPassword: strPassword },
+                success: function (response) {
+                    alert(response);
+                    window.location.href = "/Login/Login";
+                }
+            });
+
 
         });
-     
+
     </script>
 
 }
