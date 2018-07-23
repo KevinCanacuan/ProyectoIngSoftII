@@ -1,0 +1,56 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2 id="titulo">Subir archivos CSV</h2>
+<p style="text-align:center">En este sitio se alojará todos los archivos contenidos en su CSV</p>
+<div class="Control form-group" id="centro">
+    <label class="btn btn-default btn-file">
+        Examinar <input type="file" style="display: none;" class="form-group" id="upload" name="upload" />
+    </label>
+</div>
+<input type="button" class="form-control form-group" id="subirCsv" value="Cargar" />
+<table id="tablaDatos" class="table table-bordered table-hover">
+
+    <thead>
+
+        <tr>
+            <th>
+                Datos del CSV
+            </th>
+        </tr>
+    </thead>
+
+    <tbody class="tbody"></tbody>
+
+</table>
+<input type="button" style="display:none" class="form-control form-group" id="btnSubir" value="Subir Datos" />
+<link href="~/Content/fondo.css" rel="stylesheet" />
+@section Scripts{
+    <script>
+        $("#subirCsv").click(function () {
+            var nombre = document.getElementById("upload").files[0].name;
+            var filas = '';
+            $.ajax({
+                data: { nombre: nombre },
+                url: "/Upload/cargarCsv",
+                type: "GET",
+                success: function (data) {
+
+                    for (var i = 0; i < data.length; i++) {
+                        filas += '<tr><td> ' + data[i] + '</td></tr>';
+                    }
+                    $('.tbody').html(filas);
+                    $("#btnSubir").show();
+                }
+            });
+        });
+
+        $("#btnSubir").click(function () {
+            $("#tablaDatos").empty();
+            $("#btnSubir").hide();
+            alert("Sus archivos se subieron satisfactoriamente");
+        })
+    </script>
+}
