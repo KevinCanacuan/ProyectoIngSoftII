@@ -43,22 +43,29 @@
     <nav class="menu">
         <ul>
             <li class="active">
-                <a href="#">Principal</a>
+                <a href="/Login/Login">Principal</a>
             </li>
             <li>
-                <a href="~/Views/Upload/Upload.cshtml">Subir archivos CSV</a>
+                <a href="/Upload/Upload">Subir archivos CSV</a>
             </li>
             <li>
-                <a href="~/Views/Inventory/Inventory.cshtml">Inventario</a>
+                <a href="/Inventory/Inventory">Inventario</a>
             </li>
             <li>
-                <a href="~/Views/Container/Container.cshtml">Subir PDFs</a>
+                <a href="/Container/Container">Subir PDFs</a>
             </li>
-            <li>
-                <a href="#">Administración de Usuarios</a>
+            <!----<li>
+                <a href="">Administración de Usuarios</a>
 
-            </li>
+            </li>-->
         </ul>
     </nav>
 </div>
 <link href="~/Content/Menu.css" rel="stylesheet" />
+@section Scripts{
+    <script>
+        $("#Principal").click(function () {
+            window.location.href("/Container/Container");
+        });
+    </script>
+    }

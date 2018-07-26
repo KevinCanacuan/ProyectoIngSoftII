@@ -18,7 +18,7 @@ namespace prjLegados.Controllers
             List<string> lstLinea = new List<string>();
             List<String> lstFinal = new List<String>();
             string line;
-            string ruta = @"E:/Documents/Visual Studio/";
+            string ruta = @"C:\Users\Steven\source\repos\ProyectoIngSoftII\prjLegados\";
             ruta +=nombre;
 
             // Read the file and display it line by line.  
