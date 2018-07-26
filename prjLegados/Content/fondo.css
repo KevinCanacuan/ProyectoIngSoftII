@@ -1,0 +1,16 @@
+﻿body {
+    background: url("/Imagens/fondo2.jpg")   fixed;
+    background-size: cover;
+    padding: 0;
+    margin: 0;
+}
+
+#titulo {
+    color:black;
+    text-align:center;
+}
+#centro {
+    align-content:center;
+    align-items:center;
+}
+

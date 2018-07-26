@@ -9,7 +9,6 @@
     <h2>Registro de Inventario</h2>
 
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" onclick="clearTextBox();">Agregar Nuevo Inventario</button><br /><br />
-    <button id="btnCon" type="button" class="btn btn-primary">Contenedor</button><br /><br />
 
     <table class="table table-bordered table-hover">
 
@@ -37,7 +36,7 @@
 
                 <th>
 
-                    Cantidad
+                    Cantidad    
 
                 </th>
 
@@ -81,7 +80,7 @@
 
                         <label for="EmployeeId">ID</label>
 
-                        <input type="text" class="form-control" id="EmployeeID" placeholder="Id" disabled="disabled" />
+                        <input type="text" class="form-control" id="EmployeeID" placeholder="Id" disabled="disabled"/>
 
                     </div>
 
@@ -138,11 +137,6 @@
 </div>
 @section Scripts{
     <script>
-
-        $("#btnCon").click(function () {
-            window.location.href = "/Container/Container";
-        });
-
         $(document).ready(function () {
 
             loadData();
@@ -181,7 +175,7 @@
                         html += '<td>' + item.fechaIngreso + '</td>';
 
                         html += '<td><a href="#" onclick="return getbyID(' + item.idInventario + ')">Editar</a> | <a href="#" onclick="Delele(' + item.idInventario + ')">Borrar</a></td>';
-
+                       
                         html += '</tr>';
 
                     });

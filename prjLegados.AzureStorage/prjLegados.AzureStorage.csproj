@@ -119,6 +119,7 @@
     <Compile Include="Helper\ObjectExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Search\IndexFiles.cs" />
+    <Compile Include="Tables\Customer.cs" />
     <Compile Include="Tables\ITableStorage.cs" />
     <Compile Include="Tables\TableStorage.cs" />
   </ItemGroup>
