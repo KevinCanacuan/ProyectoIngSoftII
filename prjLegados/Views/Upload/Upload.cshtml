@@ -29,9 +29,18 @@
 <link href="~/Content/fondo.css" rel="stylesheet" />
 @section Scripts{
     <script>
+        $(document).ready(function () {
+            var otrasFilas = ["baseDatosOracle.csv", "baseDatosSQL.csv"];
+            for (var j = 0; j < otrasFilas.length; j++) {
+                $('#tablaAzure .tbody').append('<tr><td> ' + otrasFilas[j] + '</td></tr>');
+            }
+        });
+
+
+
         $("#subirCsv").click(function () {
             var nombre = document.getElementById("upload").files[0].name;
-            var filas = '';
+            var filas = "";
             $.ajax({
                 data: { nombre: nombre },
                 url: "/Upload/cargarCsv",
@@ -41,11 +50,15 @@
                     for (var i = 0; i < data.length; i++) {
                         filas += '<tr><td> ' + data[i] + '</td></tr>';
                     }
-                    $('.tbody').html(filas);
+                    $('#tablaDatos .tbody').html(filas);
+
                     $("#btnSubir").show();
                 }
             });
+
+            $('#tablaAzure .tbody').append('<tr><td> ' + nombre + '</td></tr>');
         });
+
 
         $("#btnSubir").click(function () {
             $("#tablaDatos").empty();

@@ -18,7 +18,7 @@
                 <p class="form-title">
                     Inicio de Sesión
                 </p>
-                <form class="login">
+                <form class="form-group">
                     <select id="Roles">
                         <option>Administrador</option>
                         <option>Usuario</option>
@@ -59,6 +59,11 @@
 <link href="~/Content/LoginStyle.css" rel="stylesheet" />
 @section Scripts{
     <script>
+        var d = new Date();
+        var today_date = d.getDate() + '/' + d.getMonth() + '/' + d.getFullYear();
+        var now = new Date(Date.now());
+        var formatted = now.getHours() + ":" + now.getMinutes() + ":" + now.getSeconds();
+
         $(document).ready(function () {
             $('.forgot-pass').click(function (event) {
                 $(".pr-wrap").toggleClass("show-pass-reset");
@@ -69,10 +74,35 @@
             });
         });
 
-        $("#SignIn").click(function () {
+        function all(log) {
+            $.ajax({
+                type: "POST",
+                url: "/Log/ingresarLog",
+                data: { usuario:log },
+                success: function (response) {
+                    alert("Log exitoso");
+                }
+            });
+
+        }
+
+
+
+        $("#SignIn").click(
+       
+            function () {
             var rol = $("#Roles").val();
             var strUsername = $("#txtUsername").val();
-            var strPassword = $("#txtPassword").val();
+            var strPassword = $("#txtPassword").val();   
+            var logprueba = {
+
+                    "nombreUsuario2": strUsername,
+                    "fechaLog": today_date,
+                   "horaLog": formatted
+
+            };
+            alert("ald");
+
             if (rol == "Administrador") {
                 $.ajax({
                     type: "POST",
@@ -102,6 +132,9 @@
 
                     }
                 });
+                alert("aldda");
+                all(logprueba);
+               
             }
             else {
                 alert("No tiene permisos.");

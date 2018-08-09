@@ -115,5 +115,8 @@ namespace prjLegados.Controllers
 
             return Json(strMensaje);
         }
+
+       
+
     }
 }
